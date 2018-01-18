@@ -10,7 +10,6 @@ import java.util.Set;
 @Table(name = "users")
 public class User implements Serializable {
     @Id
-    @NotNull
     @GeneratedValue
     private Long id;
 

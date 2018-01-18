@@ -1,13 +1,14 @@
 package com.eve.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@Table(name = "role")
-public class Role {
+@Table(name = "roles")
+public class Role implements GrantedAuthority {
     @Id
     @GeneratedValue
     private Long id;
@@ -56,8 +57,8 @@ public class Role {
         this.users = users;
     }
 
-//    @Override
-//    public String getAuthority() {
-//        return getName();
-//    }
+    @Override
+    public String getAuthority() {
+        return getName();
+    }
 }
