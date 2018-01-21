@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Success</title>
+</head>
+<body>
+<table>
+    <p th:text="${username}"></p>
+    <a  th:href="#{server.eve.account.confirm.url} + ${token}"
+        th:text="#{server.eve.account.confirm.url} + ${token}"></a>
+
+</table>
+
+</body>
+</html>
