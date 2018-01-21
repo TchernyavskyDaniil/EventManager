@@ -1,7 +1,10 @@
 package com.eve.config;
 
 
+import org.springframework.context.MessageSource;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
@@ -16,10 +19,18 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
         registry.addViewController("/login").setViewName("login");
         registry.addViewController("/").setViewName("index");
         registry.addViewController("/home").setViewName("index");
-        registry.addViewController("/user/registration").setViewName("registration");
+        registry.addViewController("/registration").setViewName("registration");
         registry.addViewController("/admin").setViewName("admin");
-        registry.addViewController("/403").setViewName("errors/403");
+        registry.addViewController("/error").setViewName("errorPage");
         registry.addViewController("/home/events").setViewName("eventsPage");
 
+    }
+
+    @Bean
+    public MessageSource messageSource() {
+        ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
+        messageSource.setBasename("strings");
+        messageSource.setDefaultEncoding("UTF-8");
+        return messageSource;
     }
 }

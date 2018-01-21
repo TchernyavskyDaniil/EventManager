@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 public interface IUserService {
     VerificationToken createNewAccount(UserDto userDTO);
     User confirmUserAccount(String token);
+
     User getUser(long id);
     User getUser(String usernameOrEmail);
     Iterable<User> getUsers();

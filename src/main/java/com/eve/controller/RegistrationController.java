@@ -2,28 +2,17 @@ package com.eve.controller;
 import com.eve.entity.User;
 import com.eve.entity.VerificationToken;
 import com.eve.service.IUserService;
-import com.eve.service.UserService;
 import com.eve.web.dto.UserDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.ApplicationEventPublisher;
-import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.core.env.Environment;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.Errors;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.context.request.WebRequest;
-import org.springframework.web.servlet.ModelAndView;
+
 import javax.validation.Valid;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 @Controller
 @ComponentScan(basePackages = "com.eve.service")
@@ -33,7 +22,7 @@ public class RegistrationController {
     @Qualifier("UserService")
     private IUserService userService;
 
-    @RequestMapping(value = "/user/registration", method = RequestMethod.GET)
+    @GetMapping("/registration")
     public String showRegistrationForm(Model model) {
         UserDto userDto = new UserDto();
         model.addAttribute("user", userDto);
@@ -41,21 +30,13 @@ public class RegistrationController {
     }
 
 
-    @PostMapping("/registration")
-    @ResponseBody
-    public ModelAndView registerUserAccount(
+    @PostMapping("/registration/create_account")
+    public String registerUserAccount(Model model,
             @ModelAttribute("user")
-            @Valid final UserDto accountDto,
-            BindingResult result, WebRequest request, Errors errors) {
-
+            @Valid final UserDto accountDto) {
         final VerificationToken token = userService.createNewAccount(accountDto);
-
-        Map<String, String> model = new HashMap<>();
-        model.put("username", token.getUser().getUsername());
-        model.put("email", token.getUser().getEmail());
-        model.put("token", token.getToken());
-        model.put("link", "http://127.0.0.1:8080/registration/confirm_account?token=" + token.getToken());
-        return new ModelAndView("successRegister", "user", accountDto);
+        model.addAttribute("token", token.getToken());
+        return "successRegister";
     }
 
     @RequestMapping("/info")
@@ -68,9 +49,14 @@ public class RegistrationController {
         return msg;
     }
 
-    @GetMapping("/confirm_account")
-    public User confirmAccount(@ModelAttribute(value = "token") String token){
-        return userService.confirmUserAccount(token);
+    @GetMapping("registration/confirm_account")
+    public String confirmAccount(@ModelAttribute(value = "token") String token,Model model){
+        User user = userService.confirmUserAccount(token);
+        if (user==null){
+            model.addAttribute("message","account does not confirmed");
+            return "errorPage";
+        }
+        return "index";
     }
 
 }
