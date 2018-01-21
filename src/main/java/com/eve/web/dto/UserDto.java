@@ -1,6 +1,5 @@
 package com.eve.web.dto;
 
-//import com.eve.validation.ValidEmail;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.validation.constraints.NotNull;
@@ -17,7 +16,6 @@ public class UserDto {
 
     private String matchingPassword;
 
-//    @ValidEmail
     @NotNull
     @NotEmpty
     private String email;

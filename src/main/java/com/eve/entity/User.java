@@ -34,8 +34,8 @@ public class User implements Serializable {
 
     private Set<Role> roles;
 
-//    @OneToMany(mappedBy = "owner")
-//    private Set<Event> events;
+    @OneToMany(mappedBy = "owner")
+    private Set<Event> events;
 
     @OneToOne(mappedBy = "user")
     private VerificationToken token;
@@ -123,11 +123,11 @@ public class User implements Serializable {
         this.token = token;
     }
 
-//    public Set<Event> getEvents() {
-//        return events;
-//    }
-//
-//    public void setEvents(Set<Event> events) {
-//        this.events = events;
-//    }
+    public Set<Event> getEvents() {
+        return events;
+    }
+
+    public void setEvents(Set<Event> events) {
+        this.events = events;
+    }
 }
