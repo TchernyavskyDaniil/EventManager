@@ -10,6 +10,7 @@ import java.util.Set;
 public interface EventRepository extends JpaRepository<Event,Long> {
 
     Event findByName(String name);
+    Event findById(Long id);
     Set<Event> findByOwnerId(Long ownerId);
     Set<Event> findByAddressId_Country(String country);
 

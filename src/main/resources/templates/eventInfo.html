@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${event.name}"></title>
+</head>
+<body>
+<table>
+    <thead>
+        <tr th:text="${event.name}"></tr>
+    </thead>
+        <tr>
+            <td>Date: </td>
+            <td th:text="${event.date}"></td>
+        </tr>
+        <tr>
+            <td>Owner: </td>
+            <td th:text="${event.owner}"></td>
+        </tr>
+        <tr>
+            <td>Address: </td>
+            <td th:text="${event.address}"></td>
+        </tr>
+        <tr>
+            <td>Description: </td>
+            <td th:text="${event.description}"></td>
+        </tr>
+    <tbody>
+
+    </tbody>
+
+</table>
+</body>
+</html>

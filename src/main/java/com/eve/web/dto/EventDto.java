@@ -5,6 +5,7 @@ import java.util.Date;
 
 public class EventDto {
 
+    private Long id;
     private String name;
     private String owner;
     private String description;
@@ -58,5 +59,13 @@ public class EventDto {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

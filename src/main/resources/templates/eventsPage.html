@@ -11,8 +11,12 @@
     <p th:text="${events}"></p>
     <tr th:each="e,iterationStatus  : ${events}">
         <td th:text="${iterationStatus.count}">1</td>
+
         <!--<td th:text="${e.id}">001</td>-->
-        <td th:text="${e.name}">Name</td>
+        <td>
+            <a th:href="#{server.eve.event.url} + ${e.id}"
+               th:text="${e.name}"></a>
+        </td>
         <!--<td th:text="${e.city}">City</td>-->
         <!--<td th:text="${e.country}">Country</td>-->
     </tr>
