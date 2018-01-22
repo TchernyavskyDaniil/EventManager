@@ -26,12 +26,48 @@ public class Address {
     @OneToMany(mappedBy = "address")
     private Set<Event> events;
 
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public Double getX() {
+
+        return x;
+    }
+
+    public void setX(Double x) {
+        this.x = x;
+    }
+
+    public Double getY() {
+        return y;
+    }
+
+    public void setY(Double y) {
+        this.y = y;
+    }
+
+    @Column(name = "x")
+    private Double x;
+
+    @Column(name = "y")
+    private Double y;
+
     public Address(){}
     public Address(String name, String country, String city, String street){
         this.country = country;
         this.name = name;
         this.city = city;
         this.street = street;
+    }
+    @Override
+    public String toString(){
+        String s = String.format("%s, %s, %s",country,city,street);
+        return s;
     }
 
     public Long getId() {
@@ -48,14 +84,6 @@ public class Address {
 
     public void setCountry(String country) {
         this.country = country;
-    }
-
-    public String getSity() {
-        return city;
-    }
-
-    public void setSity(String sity) {
-        this.city = city;
     }
 
     public String getStreet() {
@@ -81,4 +109,5 @@ public class Address {
     public void setEvents(Set<Event> events) {
         this.events = events;
     }
+
 }

@@ -1,7 +1,11 @@
 package com.eve.entity;
 
+import com.eve.util.DateUtil;
+import com.eve.web.dto.EventDto;
+
 import javax.persistence.*;
 import java.io.Serializable;
+import java.text.ParseException;
 import java.util.Date;
 
 @Entity

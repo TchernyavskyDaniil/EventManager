@@ -19,8 +19,22 @@
             <td th:text="${event.owner}"></td>
         </tr>
         <tr>
-            <td>Address: </td>
-            <td th:text="${event.address}"></td>
+            <td>Country: </td>
+            <td th:text="${event.country}"></td>
+        </tr>
+        <tr>
+            <td>City: </td>
+            <td th:text="${event.city}"></td>
+        </tr>
+        <tr>
+            <td>Street: </td>
+            <td th:text="${event.street}"></td>
+        </tr>
+        <tr style="display: none">
+            <td>Street: </td>
+            <td th:text="${event.x}"></td>
+            <td>Street: </td>
+            <td th:text="${event.y}"></td>
         </tr>
         <tr>
             <td>Description: </td>

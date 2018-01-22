@@ -7,18 +7,29 @@
 </head>
 <body>
 <H1>EVENTS</H1>
+<a th:text="#{but.addevent}" th:href="#{server.eve.url} + #{server.eve.event.add.url}"></a>
 <table>
-    <p th:text="${events}"></p>
+    <thead>
+        <td></td>
+        <td>Name</td>
+        <td>Owner</td>
+        <td>Date</td>
+        <td>City</td>
+        <td>Street</td>
+    </thead>
     <tr th:each="e,iterationStatus  : ${events}">
         <td th:text="${iterationStatus.count}">1</td>
 
-        <!--<td th:text="${e.id}">001</td>-->
         <td>
             <a th:href="#{server.eve.event.url} + ${e.id}"
                th:text="${e.name}"></a>
         </td>
-        <!--<td th:text="${e.city}">City</td>-->
-        <!--<td th:text="${e.country}">Country</td>-->
+        <td th:text="${e.owner}"></td>
+        <td th:text="${e.date}"></td>
+        <td th:text="${e.city}"></td>
+        <td th:text="${e.street}"></td>
+
+
     </tr>
 
 </table>
