@@ -1,26 +1,39 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=8" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Login page</title>
+    <link href="../static/css/style.css" rel="stylesheet">
 </head>
 <body>
-<h1>Login</h1>
-<form name='loginForm' th:action="@{/perform_login}" method="post">
-    <table>
-        <tr>
-            <td>User:</td>
-            <td><input type='text' name='username' value=''></td>
-        </tr>
-        <tr>
-            <td>Password:</td>
-            <td><input type='password' name='password' /></td>
-        </tr>
-        <tr>
-            <td><input name="submit" type="submit" value="submit" /></td>
-        </tr>
-
-    </table>
-</form>
+    <div class="login">
+        <div class="login__wrapper container">
+            <h1>Вход</h1>
+            <form name='loginForm' th:action="@{/perform_login}" method="post">
+                <ul class="login__list">
+                    <li class="login__item">
+                        <span>Пользователь:</span>
+                        <input class="login__input user" type='text' name='username' value=''>
+                    </li>
+                    <li class="login__item">
+                        <span>Пароль:</span>
+                        <input class="login__input password" type='password' name='password' />
+                    </li>
+                    <li class="login__item">
+                        <input class="login__submit" name="submit" type="submit" value="submit" />
+                    </li>
+                </ul>
+            </form>
+        </div>
+        <div class="login__reg">
+            <p class="login__title">Впервые на сайте? Пройдите
+                <a class="login__link" href="/registration/create_account">
+                    регистрацию
+                </a>
+            </p>
+        </div>
+    </div>
 </body>
 </html>

@@ -2,35 +2,42 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=8" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link href="../static/css/style.css" rel="stylesheet">
     <title>Registration page</title>
 </head>
 <body>
-<form name='regForm' th:userDto="${user}" th:action="@{/registration/create_account}" enctype="utf8" method="post">
-    <table>
-        <tr>
-            <td>User:</td>
-            <td><input type="text" th:field="*{user.username}"/></td>
-        </tr>
-        <tr>
-            <td>Email:</td>
-            <td><input type='email' th:field="*{user.email}"/></td>
-        </tr>
+<div class="reg login">
+    <div class="reg__wrapper container">
+        <h1> Регистрация </h1>
+        <form class="reg__form" name='regForm' th:userDto="${user}" th:action="@{/registration/create_account}" enctype="utf8" method="post">
+            <ul class="reg__list">
+                <li class="reg__item">
+                    <span class="reg__title">Пользоатель:</span>
+                    <input class="reg__input user" type="text" th:field="*{user.username}"/>
+                </li>
+                <li class="reg__item">
+                    <span class="reg__title">Почта:</span>
+                    <input class="reg__input email" type='email' th:field="*{user.email}"/>
+                </li>
 
-        <tr>
-            <td>Password:</td>
-            <td><input type='password' th:field="*{user.password}"/></td>
-        </tr>
-        <tr>
-            <td>Matching password:</td>
-            <td><input type='password' th:field="*{user.matchingPassword}"/></td>
-        </tr>
-        <tr>
-            <td><input name="submit" type="submit" value="submit" /></td>
-        </tr>
+                <li class="reg__item">
+                    <span class="reg__title">Пароль:</span>
+                    <input class="reg__input password" type='password' th:field="*{user.password}"/>
+                </li>
+                <li class="reg__item">
+                    <span class="reg__title">Подтвердите пароль:</span>
+                    <input class="reg__input re-password" type='password' th:field="*{user.matchingPassword}"/>
+                </li>
+                <li class="reg__item">
+                    <input class="login__submit reg__btn" name="submit" type="submit" value="submit" />
+                </li>
 
-    </table>
-</form>
-
+            </ul>
+        </form>
+    </div>
+</div>
 </body>
 </html>
