@@ -14,7 +14,8 @@
         <td>Name</td>
         <td>Owner</td>
         <td>Date</td>
-        <td>Address</td>
+        <td>City</td>
+        <td>Street</td>
     </thead>
     <tr th:each="e,iterationStatus  : ${events}">
         <td th:text="${iterationStatus.count}">1</td>
@@ -25,7 +26,9 @@
         </td>
         <td th:text="${e.owner}"></td>
         <td th:text="${e.date}"></td>
-        <td th:text="${e.address}"></td>
+        <td th:text="${e.city}"></td>
+        <td th:text="${e.street}"></td>
+
 
     </tr>
 

@@ -1,25 +1,26 @@
 package com.eve.controller;
 
+import com.eve.entity.Address;
 import com.eve.entity.Event;
 import com.eve.entity.User;
+import com.eve.repository.AddressRepository;
 import com.eve.repository.EventRepository;
 import com.eve.repository.UserRepository;
 import com.eve.util.DateUtil;
 import com.eve.web.dto.EventDto;
-import com.eve.web.dto.UserDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.transaction.Transactional;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Controller
 public class MainController {
@@ -29,6 +30,10 @@ public class MainController {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private AddressRepository addressRepository;
+
 
     @GetMapping("/home/events")
     public String showEventsList(Model model){
@@ -66,6 +71,7 @@ public class MainController {
             model.addAttribute("message","Event with this name already exists");
             return "errorPage";
         }
+
         Event e = new Event();
         e.setName(event.getName());
         User owner = userRepository.findByEmail(event.getOwner());
@@ -73,7 +79,27 @@ public class MainController {
             model.addAttribute("message","This email not found");
             return "errorPage";
         }
-        e.setAddress(event.getAddress());
+
+        Address address = addressRepository.findByCountryAndCityAndStreetAndName(
+          event.getCountry(),event.getCity(),event.getStreet(),event.getName());
+        Set<Event> ev = new HashSet<>();
+
+        if (address!=null){
+            ev = address.getEvents();
+        }else {
+            address = new Address();
+            address.setName(event.getName());
+            address.setCountry(event.getCountry());
+            address.setCity(event.getCity());
+            address.setStreet(event.getStreet());
+            address.setX(event.getX());
+            address.setY(event.getY());
+        }
+
+        e.setAddress(address);
+        ev.add(e);
+        addressRepository.save(address);
+
         try {
             e.setDate(DateUtil.SDF.parse(event.getDate()));
         } catch (ParseException e1) {
@@ -82,6 +108,10 @@ public class MainController {
             return "errorPage";
         }
         e.setDescription(event.getDescription());
+        Set<Event> events = owner.getEvents();
+        events.add(e);
+        userRepository.save(owner);
+        e.setOwner(owner);
         eventRepository.save(e);
         model.addAttribute("message","Event " + e.getName() + " created");
         return "index";

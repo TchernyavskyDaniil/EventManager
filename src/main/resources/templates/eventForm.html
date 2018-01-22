@@ -6,7 +6,7 @@
     <title>Event Form</title>
 </head>
 <body>
-<form name='addEventForm' th:eventDto="${event}" th:action="@{/home/events/add}" method="post">
+<form name='addEventForm' th:eventDto="${event}"  th:action="@{/home/events/add}" method="post">
 <table>
     <thead>
 
@@ -33,11 +33,33 @@
 
         </tr>
         <tr>
-            <td>Address</td>
+            <td>Country</td>
             <td>
-                <input th:field="*{event.address.name}"/>
+                <input th:field="*{event.country}"/>
             </td>
         </tr>
+        <tr>
+            <td>City</td>
+            <td>
+                <input th:field="*{event.city}"/>
+            </td>
+        </tr>
+        <tr>
+            <td>Street</td>
+            <td>
+                <input th:field="*{event.street}"/>
+            </td>
+        </tr>
+
+        <tr>
+            <td>x
+                <input th:field="*{event.x}"/>
+            </td>
+            <td>y
+                <input th:field="*{event.y}"/>
+            </td>
+        </tr>
+
         <tr>
             <td>Description</td>
             <td>
