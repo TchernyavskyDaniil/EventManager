@@ -4,24 +4,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=8" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Home page</title>
+    <title>Login page</title>
     <link href="../static/css/style.css" rel="stylesheet">
 </head>
 <body>
     <div class="login">
-        <div class="login__wrapper">
+        <div class="login__wrapper container">
             <h1>Вход</h1>
             <form name='loginForm' th:action="@{/perform_login}" method="post">
-                <ul class="login__item">
-                    <li class="login__list">
+                <ul class="login__list">
+                    <li class="login__item">
                         <span>Пользователь:</span>
                         <input class="login__input user" type='text' name='username' value=''>
                     </li>
-                    <li class="login__list">
+                    <li class="login__item">
                         <span>Пароль:</span>
                         <input class="login__input password" type='password' name='password' />
                     </li>
-                    <li class="login__list">
+                    <li class="login__item">
                         <input class="login__submit" name="submit" type="submit" value="submit" />
                     </li>
                 </ul>
