@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.security.Principal;
 
 @Controller
 @ComponentScan(basePackages = "com.eve.service")
@@ -39,17 +40,8 @@ public class RegistrationController {
         return "successRegister";
     }
 
-    @RequestMapping("/info")
-    public @ResponseBody String userInfo(Authentication authentication) {
-        String msg = "";
-        for (GrantedAuthority authority : authentication.getAuthorities()) {
-            String role = authority.getAuthority();
-            msg+=userService.getMsg()+ authentication.getName()+", You have "+ role;
-        }
-        return msg;
-    }
 
-    @GetMapping("registration/confirm_account")
+    @GetMapping("/registration/confirm_account")
     public String confirmAccount(@ModelAttribute(value = "token") String token,Model model){
         User user = userService.confirmUserAccount(token);
         if (user==null){
