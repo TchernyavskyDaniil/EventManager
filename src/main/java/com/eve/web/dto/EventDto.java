@@ -1,6 +1,10 @@
 package com.eve.web.dto;
 
 import com.eve.entity.Address;
+import com.eve.entity.Event;
+import com.eve.util.DateUtil;
+
+import java.text.ParseException;
 import java.util.Date;
 
 public class EventDto {
@@ -9,10 +13,20 @@ public class EventDto {
     private String name;
     private String owner;
     private String description;
-    private String country;
-    private Address address;
-    private Date date;
+    private String address;
+    private String date;
 
+    public EventDto(){
+
+    }
+    public EventDto(Event e){
+        setId(e.getId());
+        setAddress(e.getAddress()==null?null:e.getAddress().toString());
+        setDate(e.getDate()==null? null:e.getDate());
+        setDescription(e.getDescription()==null? null: e.getDescription());
+        setName(e.getName());
+        setOwner(e.getOwner().getUsername()==null? null:e.getOwner().getUsername());
+    }
     public String getOwner() {
         return owner;
     }
@@ -29,28 +43,17 @@ public class EventDto {
         this.description = description;
     }
 
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
-    public Address getAddress() {
+    public String getAddress() {
         return address;
     }
 
-    public void setAddress(Address address) {
+    public void setAddress(String address) {
         this.address = address;
     }
 
-    public Date getDate() {
-        return date;
-    }
 
     public void setDate(Date date) {
-        this.date = date;
+        this.date = DateUtil.SDF.format(date);
     }
 
     public String getName() {
@@ -67,5 +70,9 @@ public class EventDto {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getDate() {
+        return date;
     }
 }

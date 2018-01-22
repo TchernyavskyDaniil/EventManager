@@ -33,6 +33,11 @@ public class Address {
         this.city = city;
         this.street = street;
     }
+    @Override
+    public String toString(){
+        String s = String.format("%s, %s, %s",country,city,street);
+        return s;
+    }
 
     public Long getId() {
         return id;
