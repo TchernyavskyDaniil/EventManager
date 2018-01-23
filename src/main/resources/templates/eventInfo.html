@@ -2,53 +2,58 @@
 <html lang="en"
       xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=8" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
     <title th:text="${event.name}"></title>
+    <link  th:href="@{/public/css/style.css}" rel="stylesheet">
+    <link href="../static/public/css/style.css" rel="stylesheet">
 </head>
 <body>
-<h4 align="center" th:text="${message}"></h4>
-<table>
-    <thead>
-        <tr th:text="${event.name}"></tr>
-    </thead>
-        <tr>
-            <td>Date: </td>
-            <td th:text="${event.date}"></td>
-        </tr>
-        <tr>
-            <td>Owner: </td>
-            <td th:text="${event.owner}"></td>
-        </tr>
-        <tr>
-            <td>Country: </td>
-            <td th:text="${event.country}"></td>
-        </tr>
-        <tr>
-            <td>City: </td>
-            <td th:text="${event.city}"></td>
-        </tr>
-        <tr>
-            <td>Street: </td>
-            <td th:text="${event.street}"></td>
-        </tr>
-        <tr style="display: none">
-            <td>Street: </td>
-            <td th:text="${event.x}"></td>
-            <td>Street: </td>
-            <td th:text="${event.y}"></td>
-        </tr>
-        <tr>
-            <td>Description: </td>
-            <td th:text="${event.description}"></td>
-        </tr>
-        <tr>
-
-            <a type="button" th:href="#{server.eve.url} + ${action}" th:disabled="${disabled}" >Delete</a>
-        </tr>
-    <tbody>
-
-    </tbody>
-
-</table>
+    <div class="map__wrapper">
+        <div id='map'></div>
+    </div>
+    <h4 align="center" th:text="${message}"></h4>
+    <div class="panel panel__event info">
+        <ul class="info__list">
+            <li class="info__item" th:text="${event.name}"></li>
+            <li class="info__item">
+                <span>Date: </span>
+                <p th:text="${event.date}"></p>
+            </li>
+            <li class="info__item">
+                <span>Owner: </span>
+                <p th:text="${event.owner}"></p>
+            </li>
+            <li class="info__item">
+                <span>Country: </span>
+                <p th:text="${event.country}"></p>
+            </li>
+            <li class="info__item">
+                <span>City: </span>
+                <p th:text="${event.city}"></p>
+            </li>
+            <li class="info__item">
+                <span>Street: </span>
+                <p th:text="${event.street}"></p>
+            </li>
+            <li class="info__item" style="display: none">
+                <span>Street: </span>
+                <p th:text="${event.x}"></p>
+                <span>Street: </span>
+                <p th:text="${event.y}"></p>
+            </li>
+            <li class="info__item">
+                <span>Description: </span>
+                <p th:text="${event.description}"></p>
+            </li>
+            <li class="info__item info__delete">
+                <a class="info__link" th:href="#{server.eve.url} + ${action}" th:disabled="${disabled}" >Delete</a>
+            </li>
+        </ul>
+    </div>
+    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+    <script th:src="@{/public/js/map.js}"></script>
+    <script src="../static/public/js/map.js"></script>
 </body>
 </html>
