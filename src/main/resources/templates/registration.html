@@ -16,21 +16,21 @@
         <form class="reg__form" name='regForm' th:userDto="${user}" th:action="@{/registration/create_account}" enctype="utf8" method="post">
             <ul class="reg__list">
                 <li class="reg__item">
-                    <span class="reg__title">Пользоатель:</span>
-                    <input class="reg__input user" type="text" th:field="*{user.username}"/>
+                    <label for="name-reg-user" class="reg__title">Пользоатель:</label>
+                    <input class="reg__input user" type="text" th:field="*{user.username}" id="name-reg-user"/>
                 </li>
                 <li class="reg__item">
-                    <span class="reg__title">Почта:</span>
-                    <input class="reg__input email" type='email' th:field="*{user.email}"/>
+                    <label for="name-reg-email" class="reg__title">Почта:</label>
+                    <input class="reg__input email" type='email' th:field="*{user.email}" id="name-reg-email"/>
                 </li>
 
                 <li class="reg__item">
-                    <span class="reg__title">Пароль:</span>
-                    <input class="reg__input password" type='password' th:field="*{user.password}"/>
+                    <label for="name-reg-pass" class="reg__title">Пароль:</label>
+                    <input class="reg__input password" type='password' th:field="*{user.password}" id="name-reg-pass"/>
                 </li>
                 <li class="reg__item">
-                    <span class="reg__title">Подтвердите пароль:</span>
-                    <input class="reg__input re-password" type='password' th:field="*{user.matchingPassword}"/>
+                    <label for="name-reg-pass-rep" class="reg__title">Подтвердите пароль:</label>
+                    <input class="reg__input re-password" type='password' th:field="*{user.matchingPassword}" id="name-reg-pass-rep"/>
                 </li>
                 <li class="reg__item">
                     <input class="login__submit reg__btn" name="submit" type="submit" value="submit" />

@@ -16,12 +16,12 @@
             <form name='loginForm' th:action="@{/perform_login}" method="post">
                 <ul class="login__list">
                     <li class="login__item">
-                        <span>Пользователь:</span>
-                        <input class="login__input user" type='text' name='username' value=''>
+                        <label for="name-user">Пользователь:</label>
+                        <input class="login__input user" type='text' name='username' id="name-user" value=''>
                     </li>
                     <li class="login__item">
-                        <span>Пароль:</span>
-                        <input class="login__input password" type='password' name='password' />
+                        <label for="name-pass">Пароль:</label>
+                        <input class="login__input password" type='password' name='password' id="name-pass"/>
                     </li>
                     <li class="login__item">
                         <input class="login__submit" name="submit" type="submit" value="submit" />

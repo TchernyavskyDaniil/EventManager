@@ -2,76 +2,69 @@
 <html lang="en"
       xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=8" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Event Form</title>
+    <link  th:href="@{/public/css/style.css}" rel="stylesheet">
+    <link href="../static/public/css/style.css" rel="stylesheet">
 </head>
 <body>
 <h4 align="center" th:text="${message}"></h4>
-<form name='addEventForm' th:eventDto="${event}"  th:action="@{/home/events/add}" method="post">
-<table>
-    <thead>
+    <div class="map__wrapper">
+        <div id='map'></div>
+    </div>
+    <div class="panel panel__event event">
+        <form class="event__form" name='addEventForm' th:eventDto="${event}"  th:action="@{/home/events/add}" method="post">
+            <div class="event__wrapper">
+                <ul class="event__list">
+                    <li class="event__item">
+                        <label class="event__label" for="event-name">Name</label>
+                        <input class="event__input" th:field="*{event.name}" id="event-name"/>
+                    </li>
+                    <li class="event__item">
+                        <label class="event__label" for="event-date">Date</label>
+                        <input class="event__input" th:field="*{event.date}" id="event-date"/>
+                    </li>
+                    <li class="event__item">
+                        <label class="event__label" for="event-owner">Owner</label>
+                        <input class="event__input" th:field="*{event.owner}" id="event-owner"/>
+                    </li>
+                    <li class="event__item">
+                        <label class="event__label" for="event-country">Country</label>
+                        <input class="event__input" th:field="*{event.country}" id="event-country"/>
+                    </li>
+                    <li class="event__item">
+                        <label class="event__label" for="event-city">City</label>
+                        <input class="event__input" th:field="*{event.city}" id="event-city"/>
+                    </li>
+                    <li class="event__item">
+                        <label class="event__label" for="event-street">Street</label>
+                        <input class="event__input" th:field="*{event.street}" id="event-street"/>
+                    </li>
 
-    </thead>
-    <tbody>
-        <tr>
-            <td>Name</td>
-            <td>
-                <input th:field="*{event.name}"/>
-            </td>
-        </tr>
-        <tr>
-            <td>Date</td>
-            <td>
-                <input th:field="*{event.date}"/>
-            </td>
+                    <li class="event__item">
+                        <label class="event__label coordinates" for="event-x">x
+                            <input class="event__input"nput th:field="*{event.x}" id="event-x"/>
+                        </label>
+                        <label class="event__label coordinates" for="event-y">y
+                            <input class="event__input"nput th:field="*{event.y}" id="event-y"/>
+                        </label>
+                    </li>
 
-        </tr>
-        <tr>
-            <td>Owner</td>
-            <td>
-                <input th:field="*{event.owner}"/>
-            </td>
-
-        </tr>
-        <tr>
-            <td>Country</td>
-            <td>
-                <input th:field="*{event.country}"/>
-            </td>
-        </tr>
-        <tr>
-            <td>City</td>
-            <td>
-                <input th:field="*{event.city}"/>
-            </td>
-        </tr>
-        <tr>
-            <td>Street</td>
-            <td>
-                <input th:field="*{event.street}"/>
-            </td>
-        </tr>
-
-        <tr>
-            <td>x
-                <input th:field="*{event.x}"/>
-            </td>
-            <td>y
-                <input th:field="*{event.y}"/>
-            </td>
-        </tr>
-
-        <tr>
-            <td>Description</td>
-            <td>
-                <input th:field="*{event.description}"/>
-            </td>
-        </tr>
-
-    </tbody>
-
-</table>
-    <button type="submit">Add</button>
-</form>
+                    <li class="event__item">
+                        <label class="event__label" for="event-desc">Description</label>
+                        <input class="event__input" th:field="*{event.description}" id="event-desc"/>
+                    </li>
+                </ul>
+            </div>
+            <div class="event__buttons">
+             <button class="event__submit" type="submit">Add</button>
+            </div>
+        </form>
+    </div>
+    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+    <script th:src="@{/public/js/map.js}"></script>
+    <script src="../static/public/js/map.js"></script>
 </body>
 </html>
