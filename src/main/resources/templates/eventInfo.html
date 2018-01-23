@@ -13,6 +13,29 @@
     <div class="map__wrapper">
         <div id='map'></div>
     </div>
+    <div class="menu__toggle">
+        <button class="menu__toggle-burger toggle burger">
+            <svg class="burger__svg svg" width="25px" height="25px">
+                <use xlink:href="../static/public/img/icon-menu-burger.svg#icon-menu-burger">
+                </use>
+            </svg>
+            <svg class="burger__svg burger__svg-cross burger__svg--close svg" width="25px" height="25px">
+                <use xlink:href="../static/public/img/close.svg#icon-menu-cross">
+                </use>
+            </svg>
+        </button>
+        <div class="menu__burger visually-hidden">
+            <a class="menu__link home">
+                Главная страница
+            </a>
+            <a class="menu__link event">
+                События
+            </a>
+            <a class="menu__link logout">
+                Выйти
+            </a>
+        </div>
+    </div>
     <h4 align="center" th:text="${message}"></h4>
     <div class="panel panel__event info">
         <ul class="info__list">
@@ -55,5 +78,6 @@
     <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
     <script th:src="@{/public/js/map.js}"></script>
     <script src="../static/public/js/map.js"></script>
+    <script src="../static/public/js/toggle.js"></script>
 </body>
 </html>
