@@ -10,6 +10,29 @@
     <title>Registration page</title>
 </head>
 <body>
+<div class="menu__toggle">
+    <button class="menu__toggle-burger toggle burger">
+        <svg class="burger__svg svg" width="25px" height="25px">
+            <use xlink:href="../static/public/img/icon-menu-burger.svg#icon-menu-burger">
+            </use>
+        </svg>
+        <svg class="burger__svg burger__svg-cross burger__svg--close svg" width="25px" height="25px">
+            <use xlink:href="../static/public/img/close.svg#icon-menu-cross">
+            </use>
+        </svg>
+    </button>
+    <div class="menu__burger visually-hidden">
+        <a class="menu__link home" th:href="#{server.eve.url}">
+            Главная страница
+        </a>
+        <a class="menu__link event" th:href="#{server.eve.url} + /home/events">
+            События
+        </a>
+        <a class="menu__link logout" th:href="#{server.eve.url} + /logout">
+            Выйти
+        </a>
+    </div>
+</div>
 <div class="reg login">
     <div class="reg__wrapper container">
         <h1> Регистрация </h1>
@@ -40,5 +63,7 @@
         </form>
     </div>
 </div>
+<script src="../static/public/js/toggle.js"></script>
+<script th:src="@{/public/js/toggle.js}"></script>
 </body>
 </html>

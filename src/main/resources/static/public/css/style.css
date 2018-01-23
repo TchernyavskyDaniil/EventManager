@@ -727,10 +727,21 @@ a {
 
 .events__link:hover,
 .info__link:hover,
-.info__link:focus {
+.info__link:focus,
+.menu__link:hover {
     transition: .3s;
     background-color: #2196f3;
     box-shadow: 0 0 5px 0 #34495e;
+    outline: none;
+}
+
+.menu__toggle-burger:hover {
+    transition: .3s;
+    background-color: #2196f3;
+}
+
+.menu__toggle-burger:hover .burger__svg{
+    fill: white;
 }
 
 .panel__event {
@@ -823,6 +834,12 @@ a {
     padding: 10px 5px 10px 5px;
     justify-content: space-between;
     border-bottom: 1px solid #eceff1;
+    font-size: 16px;
+}
+
+.info__item:nth-child(1) {
+    font-size: 20px;
+    text-align: center;
 }
 
 .info__delete {
@@ -840,4 +857,75 @@ a {
     min-width: 85px;
     text-align: center;
     cursor: pointer;
+}
+
+.menu__burger {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    min-height: 250px;
+    justify-content: space-around;
+    min-width: 250px;
+    z-index: 1;
+    background-color: white;
+    top: 54px;
+    right: -85px;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    border-radius: 22px;
+    box-shadow: 0 0 5px 0 #34495e;
+    padding: 15px;
+    align-items: center;
+}
+
+.menu__link {
+    width: 80%;
+    min-height: 30px;
+    background-color: #2ecc71;
+    border: none;
+    color: white;
+    border-radius: 16px;
+    font-size: 18px;
+    padding: 5px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.menu__toggle-burger {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #fff;
+    border: 0;
+    -webkit-box-shadow: 0 0 5px 0 #34495e;
+    box-shadow: 0 0 5px 0 #34495e;
+    z-index: 10;
+}
+
+.burger__svg {
+    fill: #262d36;
+    padding-top: 4px;
+}
+
+.burger__svg-cross {
+    padding-top: 4px;
+    fill: #262d36;
+}
+
+.burger__svg--close {
+    display: none;
+}
+
+.visually-hidden {
+    display: none;
+}
+
+.menu__toggle {
+    position: absolute;
+    z-index: 1;
+    top: 4%;
+    right: 4%;
 }
