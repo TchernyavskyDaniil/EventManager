@@ -6,6 +6,7 @@
     <title th:text="${event.name}"></title>
 </head>
 <body>
+<h4 align="center" th:text="${message}"></h4>
 <table>
     <thead>
         <tr th:text="${event.name}"></tr>
@@ -39,6 +40,10 @@
         <tr>
             <td>Description: </td>
             <td th:text="${event.description}"></td>
+        </tr>
+        <tr>
+
+            <button type="button" th:action="/">Delete</button>
         </tr>
     <tbody>
 

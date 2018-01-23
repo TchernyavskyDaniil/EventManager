@@ -41,56 +41,56 @@ public class EveApplication  implements CommandLineRunner{
 	@Transactional
 	@Override
 	public void run(String... strings) throws Exception {
-		Set<Role> roles = new HashSet<>();
-		Set<User> users = new HashSet<>();
-
-
-		User user = userRepository.findByUsername("user");
-		if (user!=null){
-			userRepository.delete(user);
-		}
-		user = new User("user","password","email");
-		user.setEnabled(true);
-		Role roleUser = roleRepository.findByName("USER");
-		if (roleUser!=null){
-			roleRepository.delete(roleUser);
-		}
-		roleUser = new Role("USER");
-
-
-		roles.add(roleUser);
-		users.add(user);
-
-		user.setRoles(roles);
-		roleUser.setUsers(users);
-
-
-		userRepository.save(user);
-		roleRepository.save(roles);
-
-
-
-
-
-		Address address1 = new Address("home","Russia",
-				"Krasnodar","Street1");
-
-		Event event = new Event("Party",new Date(),"kokoko");
-
-		Set<Event> events = new HashSet<>();
-		events.add(event);
-
-		address1.setEvents(events);
-
-
-		user.setEvents(events);
-
-		event.setOwner(user);
-		event.setAddress(address1);
-
-		addressRepository.save(address1);
-		eventRepository.save(event);
-
-
+//		Set<Role> roles = new HashSet<>();
+//		Set<User> users = new HashSet<>();
+//
+//
+//		User user = userRepository.findByUsername("user");
+//		if (user!=null){
+//			userRepository.delete(user);
+//		}
+//		user = new User("user","password","email");
+//		user.setEnabled(true);
+//		Role roleUser = roleRepository.findByName("USER");
+//		if (roleUser!=null){
+//			roleRepository.delete(roleUser);
+//		}
+//		roleUser = new Role("USER");
+//
+//
+//		roles.add(roleUser);
+//		users.add(user);
+//
+//		user.setRoles(roles);
+//		roleUser.setUsers(users);
+//
+//
+//		userRepository.save(user);
+//		roleRepository.save(roles);
+//
+//
+//
+//
+//
+//		Address address1 = new Address("home","Russia",
+//				"Krasnodar","Street1");
+//
+//		Event event = new Event("Party",new Date(),"kokoko");
+//
+//		Set<Event> events = new HashSet<>();
+//		events.add(event);
+//
+//		address1.setEvents(events);
+//
+//
+//		user.setEvents(events);
+//
+//		event.setOwner(user);
+//		event.setAddress(address1);
+//
+//		addressRepository.save(address1);
+//		eventRepository.save(event);
+//
+//
 	}
 }

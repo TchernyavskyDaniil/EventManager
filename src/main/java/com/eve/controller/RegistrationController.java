@@ -49,11 +49,12 @@ public class RegistrationController {
         return msg;
     }
 
-    @GetMapping("registration/confirm_account")
+    @GetMapping("/registration/confirm_account")
     public String confirmAccount(@ModelAttribute(value = "token") String token,Model model){
         User user = userService.confirmUserAccount(token);
         if (user==null){
-            model.addAttribute("message","account does not confirmed");
+            model.addAttribute("message","Account does not confirmed");
+            model.addAttribute("link","/registration");
             return "errorPage";
         }
         return "index";

@@ -28,13 +28,6 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
         registry.addViewController("/home/events/new").setViewName("eventForm");
 
     }
-    @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
-        registry.addResourceHandler("/css/**").addResourceLocations("/WEB-INF/css/");
-        registry.addResourceHandler("/js/**").addResourceLocations("/WEB-INF/js/");
-        registry.addResourceHandler("/image/**").addResourceLocations("/WEB-INF/image/");
-    }
 
     @Bean
     public MessageSource messageSource() {

@@ -43,10 +43,7 @@ public class MainController {
             EventDto e1 = new EventDto(e);
             eventDtos.add(e1);
         }
-
         model.addAttribute("events",eventDtos);
-
-
         return "eventsPage";
     }
 
@@ -64,12 +61,25 @@ public class MainController {
         model.addAttribute("event", eventDto);
         return "eventForm";
     }
+
+    @GetMapping("/home/events/delete")
+    public String deleteEvent(@ModelAttribute("id") Long eventId,Model model){
+        Event e = eventRepository.findById(eventId);
+        if (e==null){
+            model.addAttribute("message","Event not found");
+            return showEventsList(model);
+        }
+
+        eventRepository.delete(e);
+        return showEventsList(model);
+    }
+
     @Transactional
     @PostMapping("/home/events/add")
     public String addNewEvent(@ModelAttribute("event") EventDto event, Model model){
         if (eventRepository.findByName(event.getName())!=null){
             model.addAttribute("message","Event with this name already exists");
-            return "errorPage";
+            return showEventsList(model);
         }
 
         Event e = new Event();
@@ -77,7 +87,7 @@ public class MainController {
         User owner = userRepository.findByEmail(event.getOwner());
         if (owner==null){
             model.addAttribute("message","This email not found");
-            return "errorPage";
+            return showEventsList(model);
         }
 
         Address address = addressRepository.findByCountryAndCityAndStreetAndName(
@@ -114,6 +124,7 @@ public class MainController {
         e.setOwner(owner);
         eventRepository.save(e);
         model.addAttribute("message","Event " + e.getName() + " created");
-        return "index";
+
+        return showEventsList(model);
     }
 }
