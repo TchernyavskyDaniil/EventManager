@@ -24,6 +24,8 @@ public class RegistrationController {
     @Qualifier("UserService")
     private IUserService userService;
 
+
+
     @GetMapping("/registration")
     public String showRegistrationForm(Model model) {
         UserDto userDto = new UserDto();
@@ -45,7 +47,8 @@ public class RegistrationController {
     public String confirmAccount(@ModelAttribute(value = "token") String token,Model model){
         User user = userService.confirmUserAccount(token);
         if (user==null){
-            model.addAttribute("message","account does not confirmed");
+            model.addAttribute("message","Account does not confirmed");
+            model.addAttribute("link","/registration");
             return "errorPage";
         }
         return "index";

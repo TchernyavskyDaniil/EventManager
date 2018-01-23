@@ -1,26 +1,66 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=8" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Login page</title>
+    <link  th:href="@{/public/css/style.css}" rel="stylesheet">
+    <!--<link href="../static/public/css/style.css" rel="stylesheet">-->
 </head>
 <body>
-<h1>Login</h1>
-<form name='loginForm' th:action="@{/login}" method="post">
-    <table>
-        <tr>
-            <td>User:</td>
-            <td><input type='text' name='username' value=''></td>
-        </tr>
-        <tr>
-            <td>Password:</td>
-            <td><input type='password' name='password' /></td>
-        </tr>
-        <tr>
-            <td><input name="submit" type="submit" value="submit" /></td>
-        </tr>
-
-    </table>
-</form>
+    <div class="menu__toggle">
+        <button class="menu__toggle-burger toggle burger">
+            <svg class="burger__svg svg" width="25px" height="25px">
+                <use xlink:href="../static/public/img/icon-menu-burger.svg#icon-menu-burger">
+                </use>
+            </svg>
+            <svg class="burger__svg burger__svg-cross burger__svg--close svg" width="25px" height="25px">
+                <use xlink:href="../static/public/img/close.svg#icon-menu-cross">
+                </use>
+            </svg>
+        </button>
+        <div class="menu__burger visually-hidden">
+            <a class="menu__link home" th:href="#{server.eve.url}">
+                Главная страница
+            </a>
+            <a class="menu__link event" th:href="#{server.eve.url} + #{server.eve.events.url}">
+                События
+            </a>
+            <a class="menu__link logout" th:href="#{server.eve.url} + #{server.eve.logout.url}">
+                Выйти
+            </a>
+        </div>
+    </div>
+    <div class="login">
+        <div class="login__wrapper container">
+            <h1>Вход</h1>
+            <form name='loginForm' th:action="@{/login}" method="post">
+                <ul class="login__list">
+                    <li class="login__item">
+                        <label for="name-user">Пользователь:</label>
+                        <input class="login__input user" type='text' name='username' id="name-user" value=''>
+                    </li>
+                    <li class="login__item">
+                        <label for="name-pass">Пароль:</label>
+                        <input class="login__input password" type='password' name='password' id="name-pass"/>
+                    </li>
+                    <li class="login__item">
+                        <input class="login__submit" name="submit" type="submit" value="submit" />
+                    </li>
+                </ul>
+            </form>
+        </div>
+        <div class="login__reg">
+            <p class="login__title">Впервые на сайте? Пройдите
+                <a class="login__link" href="/registration">
+                    регистрацию
+                </a>
+            </p>
+        </div>
+    </div>
+    <script src="../static/public/js/toggle.js"></script>
+    <script th:src="@{/public/js/toggle.js}"></script>
 </body>
 </html>

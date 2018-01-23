@@ -1,14 +1,36 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=8" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Home page</title>
+    <link  th:href="@{/public/css/style.css}" rel="stylesheet">
+    <!--<link href="../static/public/css/style.css" rel="stylesheet">-->
 </head>
 <body>
-<H1>Home page</H1>
-<h4 th:text="${message}"></h4>
-<li><a href="/login">Login</a></li>
-<li><a href="/logout">Logout</a></li>
-<li><a href="/registration">Registration</a></li>
+    <h4 align="center" th:text="${message}"></h4>
+    <div class="map__wrapper">
+        <div id='map'></div>
+    </div>
+    <div class="panel">
+        <ul class="panel__list">
+            <li class="panel__item">
+                <a class="panel__link" href="/login">Вход</a>
+            </li>
+            <li class="panel__item">
+                <a class="panel__link" href="/logout">Выход</a>
+            </li>
+            <li class="panel__item">
+                <a class="panel__link" href="/registration">Регистрация</a>
+            </li>
+            <li class="panel__item">
+                <a class="panel__link" href="/home/events">События</a>
+            </li>
+        </ul>
+    </div>
+    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+    <script th:src="@{/public/js/map.js}"></script>
+    <!--<script src="../static/public/js/map.js"></script>-->
 </body>
 </html>

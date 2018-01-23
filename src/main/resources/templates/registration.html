@@ -2,35 +2,68 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=8" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link  th:href="@{/public/css/style.css}" rel="stylesheet">
+    <!--<link href="../static/public/css/style.css" rel="stylesheet">-->
     <title>Registration page</title>
 </head>
 <body>
-<form name='regForm' th:userDto="${user}" th:action="@{/registration/create_account}" enctype="utf8" method="post">
-    <table>
-        <tr>
-            <td>User:</td>
-            <td><input type="text" th:field="*{user.username}"/></td>
-        </tr>
-        <tr>
-            <td>Email:</td>
-            <td><input type='email' th:field="*{user.email}"/></td>
-        </tr>
+<div class="menu__toggle">
+    <button class="menu__toggle-burger toggle burger">
+        <svg class="burger__svg svg" width="25px" height="25px">
+            <use xlink:href="../static/public/img/icon-menu-burger.svg#icon-menu-burger">
+            </use>
+        </svg>
+        <svg class="burger__svg burger__svg-cross burger__svg--close svg" width="25px" height="25px">
+            <use xlink:href="../static/public/img/close.svg#icon-menu-cross">
+            </use>
+        </svg>
+    </button>
+    <div class="menu__burger visually-hidden">
+        <a class="menu__link home" th:href="#{server.eve.url}">
+            Главная страница
+        </a>
+        <a class="menu__link event" th:href="#{server.eve.url} + #{server.eve.events.url}">
+            События
+        </a>
+        <a class="menu__link logout" th:href="#{server.eve.url} + #{server.eve.logout.url}">
+            Выйти
+        </a>
+    </div>
+</div>
+<div class="reg login">
+    <div class="reg__wrapper container">
+        <h1> Регистрация </h1>
+        <form class="reg__form" name='regForm' th:userDto="${user}" th:action="@{/registration/create_account}" enctype="utf8" method="post">
+            <ul class="reg__list">
+                <li class="reg__item">
+                    <label for="name-reg-user" class="reg__title">Пользоатель:</label>
+                    <input class="reg__input user" type="text" th:field="*{user.username}" id="name-reg-user"/>
+                </li>
+                <li class="reg__item">
+                    <label for="name-reg-email" class="reg__title">Почта:</label>
+                    <input class="reg__input email" type='email' th:field="*{user.email}" id="name-reg-email"/>
+                </li>
 
-        <tr>
-            <td>Password:</td>
-            <td><input type='password' th:field="*{user.password}"/></td>
-        </tr>
-        <tr>
-            <td>Matching password:</td>
-            <td><input type='password' th:field="*{user.matchingPassword}"/></td>
-        </tr>
-        <tr>
-            <td><input name="submit" type="submit" value="submit" /></td>
-        </tr>
+                <li class="reg__item">
+                    <label for="name-reg-pass" class="reg__title">Пароль:</label>
+                    <input class="reg__input password" type='password' th:field="*{user.password}" id="name-reg-pass"/>
+                </li>
+                <li class="reg__item">
+                    <label for="name-reg-pass-rep" class="reg__title">Подтвердите пароль:</label>
+                    <input class="reg__input re-password" type='password' th:field="*{user.matchingPassword}" id="name-reg-pass-rep"/>
+                </li>
+                <li class="reg__item">
+                    <input class="login__submit reg__btn" name="submit" type="submit" value="submit" />
+                </li>
 
-    </table>
-</form>
-
+            </ul>
+        </form>
+    </div>
+</div>
+<script src="../static/public/js/toggle.js"></script>
+<script th:src="@{/public/js/toggle.js}"></script>
 </body>
 </html>
