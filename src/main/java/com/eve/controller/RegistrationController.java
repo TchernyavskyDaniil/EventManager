@@ -1,6 +1,7 @@
 package com.eve.controller;
 import com.eve.entity.User;
 import com.eve.entity.VerificationToken;
+import com.eve.repository.UserRepository;
 import com.eve.service.IUserService;
 import com.eve.web.dto.UserDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,24 @@ public class RegistrationController {
     @Qualifier("UserService")
     private IUserService userService;
 
+    @Autowired
+    private UserRepository userRepository;
+
+//    @PostMapping("/perform_login")
+//    public String login(@ModelAttribute("username") String username,
+//                        @ModelAttribute("password") String password, Model model){
+//        User user = userRepository.findByUsername(username);
+//        if (user==null){
+//            model.addAttribute("message","User not found");
+//            return "loginPage";
+//        }
+//        boolean authenticated = userService.checkPassword(user.getId(),password);
+//        if (authenticated){
+//            return "eventsPage";
+//        }
+//        model.addAttribute("message","Password not correct");
+//        return "errorPage";
+//    }
 
 
     @GetMapping("/registration")

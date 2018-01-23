@@ -11,11 +11,12 @@ import org.springframework.stereotype.Service;
 public interface IUserService {
     VerificationToken createNewAccount(UserDto userDTO);
     User confirmUserAccount(String token);
-
     User getUser(long id);
     User getUser(String usernameOrEmail);
     Iterable<User> getUsers();
     void deleteUser(long id);
+    boolean changePassword(Long id, String password);
+    boolean checkPassword(Long id, String password);
 
     @Secured("authenticated")
     public String getMsg();

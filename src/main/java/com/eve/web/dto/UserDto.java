@@ -7,7 +7,6 @@ import javax.validation.constraints.NotNull;
 
 public class UserDto {
 
-    @NotNull
     private Long id;
 
     @NotNull

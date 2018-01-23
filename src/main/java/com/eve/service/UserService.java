@@ -32,6 +32,8 @@ public class UserService implements IUserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+
+
     @Transactional
     @Override
     public VerificationToken createNewAccount(UserDto accountDto) {
@@ -56,6 +58,15 @@ public class UserService implements IUserService {
         final VerificationToken myToken = new VerificationToken(token, r);
         return tokenRepository.save(myToken);
 
+    }
+
+    @Override
+    public boolean checkPassword(Long id,String password){
+        User user = userRepository.findById(id);
+        if (user==null){
+            return false;
+        }
+        return passwordEncoder.matches(user.getPassword(),password);
     }
 
     @Transactional
@@ -92,6 +103,17 @@ public class UserService implements IUserService {
     @Override
     public void deleteUser(long id) {
         userRepository.delete(id);
+    }
+
+    @Override
+    public boolean changePassword(Long id, String password) {
+        User user = userRepository.findById(id);
+        if (user==null){
+            return false;
+        }
+        user.setPassword(passwordEncoder.encode(password));
+        userRepository.save(user);
+        return true;
     }
 
     @Override
