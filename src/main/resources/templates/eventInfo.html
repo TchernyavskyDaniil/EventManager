@@ -25,13 +25,13 @@
             </svg>
         </button>
         <div class="menu__burger visually-hidden">
-            <a class="menu__link home">
+            <a class="menu__link home" th:href="#{server.eve.url}">
                 Главная страница
             </a>
-            <a class="menu__link event">
+            <a class="menu__link event" th:href="#{server.eve.url} + /home/events">
                 События
             </a>
-            <a class="menu__link logout">
+            <a class="menu__link logout" th:href="#{server.eve.url} + /logout">
                 Выйти
             </a>
         </div>
@@ -79,5 +79,6 @@
     <script th:src="@{/public/js/map.js}"></script>
     <script src="../static/public/js/map.js"></script>
     <script src="../static/public/js/toggle.js"></script>
+    <script th:src="@{/public/js/toggle.js}"></script>
 </body>
 </html>
