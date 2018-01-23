@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+</head>
+<body>
+<form th:action="@{/user/change_info}">
+    <input type="text" th:label="${user.username}" th:text="*{user.username}"/>
+    <input type="email" th:label="${user.email}"  th:text="*{user.email}"/>
+
+    <button type="submit">Save changes</button>
+</form>
+
+
+</body>
+</html>

@@ -1,10 +1,15 @@
 package com.eve.web.dto;
 
+import com.eve.entity.User;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.validation.constraints.NotNull;
 
 public class UserDto {
+
+    @NotNull
+    private Long id;
+
     @NotNull
     @NotEmpty
     private String username;
@@ -20,7 +25,13 @@ public class UserDto {
     @NotEmpty
     private String email;
 
+    public UserDto(){}
 
+    public UserDto(User user){
+
+        setEmail(user.getEmail());
+        setUsername(user.getUsername());
+    }
     public String getUsername() {
         return username;
     }
@@ -51,5 +62,13 @@ public class UserDto {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }
