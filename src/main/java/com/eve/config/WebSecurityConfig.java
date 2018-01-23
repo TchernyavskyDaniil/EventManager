@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -24,8 +25,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth
                 .inMemoryAuthentication()
+                .passwordEncoder(passwordEncoder())
                 .withUser("user").password("password").roles("ADMIN");
     }
+
 
 
     @Override
@@ -38,13 +41,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/admin/**").hasRole("ADMIN")
                 .antMatchers("/home/**","/").permitAll()//.hasAnyRole("ADMIN","USER")
                 .antMatchers("/user/**").hasAnyRole("USER")
-                .antMatchers("/login*").anonymous()
+                .antMatchers("/login").anonymous()
 //                .antMatchers("/perform_login/*").anonymous()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
                 .loginPage("/login")
-                .loginProcessingUrl("/perform_login")
+                .loginProcessingUrl("/j_spring_security_check")
                 .defaultSuccessUrl("/home/events",true)
                 .failureUrl("/login?error=true")
                 .and()

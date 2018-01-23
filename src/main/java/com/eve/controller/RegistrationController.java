@@ -12,6 +12,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 
@@ -42,6 +43,10 @@ public class RegistrationController {
 //        return "errorPage";
 //    }
 
+    @RequestMapping(value = "/login", method = { RequestMethod.GET, RequestMethod.POST })
+    public ModelAndView loginPage() {
+        return new ModelAndView("login");
+    }
 
     @GetMapping("/registration")
     public String showRegistrationForm(Model model) {
