@@ -29,10 +29,10 @@
             <a class="menu__link home" th:href="#{server.eve.url}">
                 Главная страница
             </a>
-            <a class="menu__link event" th:href="#{server.eve.url} + /home/events">
+            <a class="menu__link event" th:href="#{server.eve.url} + #{server.eve.events.url}">
                 События
             </a>
-            <a class="menu__link logout" th:href="#{server.eve.url} + /logout">
+            <a class="menu__link logout" th:href="#{server.eve.url} + #{server.eve.logout.url}">
                 Выйти
             </a>
         </div>
