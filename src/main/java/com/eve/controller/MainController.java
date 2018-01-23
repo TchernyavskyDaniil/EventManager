@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.transaction.Transactional;
+import java.security.Permission;
+import java.security.Principal;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -48,11 +50,22 @@ public class MainController {
     }
 
     @GetMapping("/home/events/info")
-    public String getEventInfo(@ModelAttribute("id") Long eventId,Model model){
+    public String getEventInfo(@ModelAttribute("id") Long eventId, Model model, Principal principal){
         Event e = eventRepository.findById(eventId);
         EventDto e1 = new EventDto(e);
         model.addAttribute("event",e1);
+        if (principal!=null){
+            if (e.getOwner().getUsername().equals(principal.getName())){
+                model.addAttribute("disabled",false);
+            }else{
+                model.addAttribute("disabled",true);
+            }
+            model.addAttribute("action","/home/events/delete?id="+eventId);
+            return "eventInfo";
+        }
+        model.addAttribute("disabled",true);
         return "eventInfo";
+
     }
 
     @GetMapping("/home/events/new")
@@ -62,6 +75,7 @@ public class MainController {
         return "eventForm";
     }
 
+    @Transactional
     @GetMapping("/home/events/delete")
     public String deleteEvent(@ModelAttribute("id") Long eventId,Model model){
         Event e = eventRepository.findById(eventId);

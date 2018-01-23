@@ -43,7 +43,7 @@
         </tr>
         <tr>
 
-            <button type="button" th:action="/">Delete</button>
+            <a type="button" th:href="#{server.eve.url} + ${action}" th:disabled="${disabled}" >Delete</a>
         </tr>
     <tbody>
 
