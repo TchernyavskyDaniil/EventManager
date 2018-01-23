@@ -37,19 +37,21 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/registration/**").permitAll()
                 .antMatchers("/admin/**").hasRole("ADMIN")
                 .antMatchers("/home/**","/").permitAll()//.hasAnyRole("ADMIN","USER")
+                .antMatchers("/registration/**").anonymous()
+                .antMatchers("/admin/**").hasRole("ADMIN")
+                .antMatchers("/home/**","/").permitAll()
                 .antMatchers("/user/**").hasAnyRole("USER")
-                .antMatchers("/login*").anonymous()
+                .antMatchers("/login").anonymous()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
                 .loginPage("/login")
-                .loginProcessingUrl("/perform_login")
-                .defaultSuccessUrl("/home/events",true)
-                .failureUrl("/login?error=true")
                 .and()
                 .logout().logoutSuccessUrl("/login")
+                .and().exceptionHandling().accessDeniedPage("/errorPage")
                 .and()
                 .csrf().disable();
+
     }
 
 

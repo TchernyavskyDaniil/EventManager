@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html lang="en"
       xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=8" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Home page</title>
     <link  th:href="@{/public/css/style.css}" rel="stylesheet">
-    <link href="../static/public/css/style.css" rel="stylesheet">
+    <!--<link href="../static/public/css/style.css" rel="stylesheet">-->
 </head>
 <body>
-    <h4 align="center" th:text="${message}"></h4>
+        <h4 align="center" th:text="${message}"></h4>
     <div class="map__wrapper">
         <div id='map'></div>
     </div>
@@ -32,6 +33,6 @@
     </div>
     <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
     <script th:src="@{/public/js/map.js}"></script>
-    <script src="../static/public/js/map.js"></script>
+    <!--<script src="../static/public/js/map.js"></script>-->
 </body>
 </html>

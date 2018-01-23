@@ -11,8 +11,10 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
+import java.security.Principal;
 
 @Controller
 @ComponentScan(basePackages = "com.eve.service")
@@ -31,7 +33,6 @@ public class RegistrationController {
         return "registration";
     }
 
-
     @PostMapping("/registration/create_account")
     public String registerUserAccount(Model model,
             @ModelAttribute("user")
@@ -41,15 +42,6 @@ public class RegistrationController {
         return "successRegister";
     }
 
-    @RequestMapping("/info")
-    public @ResponseBody String userInfo(Authentication authentication) {
-        String msg = "";
-        for (GrantedAuthority authority : authentication.getAuthorities()) {
-            String role = authority.getAuthority();
-            msg+=userService.getMsg()+ authentication.getName()+", You have "+ role;
-        }
-        return msg;
-    }
 
     @GetMapping("/registration/confirm_account")
     public String confirmAccount(@ModelAttribute(value = "token") String token,Model model){

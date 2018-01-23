@@ -7,13 +7,13 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Login page</title>
     <link  th:href="@{/public/css/style.css}" rel="stylesheet">
-    <link href="../static/public/css/style.css" rel="stylesheet">
+    <!--<link href="../static/public/css/style.css" rel="stylesheet">-->
 </head>
 <body>
     <div class="login">
         <div class="login__wrapper container">
             <h1>Вход</h1>
-            <form name='loginForm' th:action="@{/perform_login}" method="post">
+            <form name='loginForm' th:action="@{/login}" method="post">
                 <ul class="login__list">
                     <li class="login__item">
                         <label for="name-user">Пользователь:</label>
