@@ -11,6 +11,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 import java.security.Principal;
@@ -29,7 +30,6 @@ public class RegistrationController {
         model.addAttribute("user", userDto);
         return "registration";
     }
-
 
     @PostMapping("/registration/create_account")
     public String registerUserAccount(Model model,
